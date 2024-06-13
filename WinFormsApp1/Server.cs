@@ -110,27 +110,30 @@ namespace WinFormsApp1
                         // если прислан маркер окончания взаимодействия,
                         // выходим из цикла и завершаем взаимодействие с клиентом
                         if (word == "END") break;
+                        DB dB = new DB();
+                        string qeripass = $" SELECT userpas FROM [userinfo].[dbo].[adminuser]";
+                        SqlCommand command = new SqlCommand(qeripass, dB.GetConnection());
+                        dB.openConnection();
+                        string ip = command.ExecuteScalar().ToString();
+                        if (word == ip)
+                        {
 
-                        Console.WriteLine($"Запрошен перевод слова {word}");
-                        // находим слово в словаре и отправляем обратно клиенту
-                        if (!words.TryGetValue(word, out var itog)) itog = "ip не определён";
-                        if (!words.TryGetValue(word, out var itogfolse)) itogfolse = "ip  определён";
-                        // добавляем символ окончания сообщения 
-                        itog += '\n';
-                        itogfolse += '\n';
-                        // отправляем перевод слова из словаря
-                     
-                       // int result = xmlreadr.xmlreads(word);
-                        //if (result >= 1)
-                       // {
+
+                            Console.WriteLine($"Запрошен перевод слова {word}");
+                            // находим слово в словаре и отправляем обратно клиенту
+                            if (!words.TryGetValue(word, out var itogfolse)) itogfolse = "ip  определён";
+                            // добавляем символ окончания сообщения 
+
+                            itogfolse += '\n';
+
 
                             await stream.WriteAsync(Encoding.UTF8.GetBytes(itogfolse));
                             response.Clear();
-                        //}
-                       // else
-                       // {
-                            await stream.WriteAsync(Encoding.UTF8.GetBytes(itog));
-                       // }
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
             }

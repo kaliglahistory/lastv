@@ -84,11 +84,12 @@ namespace WinFormsApp1
             // 
             // button2
             // 
+            button2.AutoSize = true;
             button2.Location = new Point(634, 400);
             button2.Name = "button2";
-            button2.Size = new Size(120, 23);
+            button2.Size = new Size(151, 25);
             button2.TabIndex = 6;
-            button2.Text = "Тест соеденения ";
+            button2.Text = "Поделючение к серверу";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click_1;
             // 
@@ -101,6 +102,7 @@ namespace WinFormsApp1
             checkBox1.TabIndex = 7;
             checkBox1.Text = "Индекатор соеденения";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // radioButton2
             // 
